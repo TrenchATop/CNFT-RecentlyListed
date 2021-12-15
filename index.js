@@ -68,16 +68,16 @@ async function checkTag() {
 
         if (currentListings < newListings) {
   
-          console.log("New Listing")
+          console.log("New PH Listing")
           discordListing(data)
   
         }else if (currentListings == newListings) {
   
-          console.log("New Offer BAC")
+          console.log("New Offer PH")
 
         }else {
   
-          console.log("Delisted/Sold BAC")
+          console.log("Delisted/Sold PH")
 
         }
   
