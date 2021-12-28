@@ -53,7 +53,7 @@ function gettingTime(time){
   
   function discordListing(data) {
     console.log("New Pixel Head Item");
-    const channel = client.channels.cache.get('917580463747506238');
+    const channel = client.channels.cache.get('918052922154164234');
     for (let i = 0; i < (data.length); i++) {
     
         let name = data[i].asset.metadata.name;

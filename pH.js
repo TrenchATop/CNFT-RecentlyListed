@@ -7,12 +7,6 @@ const { MessageEmbed } = require('discord.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
 
-function secondsBefore() {
-    const newDate = new Date()
-    newDate.setSeconds(newDate.getSeconds() - 10);
-    const stringDate = newDate.toISOString()
-    return stringDate
-  }
   
   function getColour(data, price){
     if (data.smartContractTxid) {
