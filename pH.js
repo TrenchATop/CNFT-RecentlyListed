@@ -28,24 +28,31 @@ function secondsBefore() {
         
   }
   function run() {
-  axios.post(`https://api.cnft.io/market/listings`, payLoad)
-  .then(response => {
-      const date = secondsBefore()
-      const newFilter = response.data.results
-      .filter(data => data.createdAt >= date)
-      .map(({_id, price, asset, smartContractTxid}) => ({
-      _id,
-      price,
-      asset,
-      smartContractTxid
-      }));
-      (newFilter.length) ? discordListing(newFilter):"no";
-      
-  })
-  .catch(function (error) {
-      console.log(error);
+    axios.post(`https://api.cnft.io/market/listings`, payLoad)
+    .then(response => {
+        let listings = response.data.results
+        .filter(data => gettingTime(data.createdAt) >= (new Date().getTime()- 10000));
+        (listings.length) ? discordListing(listings):"no";
+    })
+    .catch(function (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        console.log(error.response.data);
+        console.log(error.response.status);
+        console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.log('Error', error.message);
+      }
+      console.log(error.config);
     });
-  }
+    }
   
   function discordListing(data) {
     console.log("New Pixel Head")
